@@ -1,11 +1,11 @@
-var idno, nameV, genderV, addressV;
+var ID, nameV, genderV, addressV;
 
 function readFom() {
-  idno = document.getElementById("ID").value;
+  ID = document.getElementById("roll").value;
   nameV = document.getElementById("name").value;
   genderV = document.getElementById("gender").value;
   addressV = document.getElementById("address").value;
-  console.log(idno, nameV, addressV, genderV);
+  console.log(ID, nameV, addressV, genderV);
 }
 
 document.getElementById("insert").onclick = function () {
@@ -13,15 +13,15 @@ document.getElementById("insert").onclick = function () {
 
   firebase
     .database()
-    .ref("student/" + id)
+    .ref("student/" + ID)
     .set({
-      id: idno,
+      ID: ID,
       name: nameV,
       gender: genderV,
       address: addressV,
     });
   alert("Data Inserted");
-  document.getElementById("ID").value = "";
+  document.getElementById("roll").value = "";
   document.getElementById("name").value = "";
   document.getElementById("gender").value = "";
   document.getElementById("address").value = "";
@@ -32,9 +32,9 @@ document.getElementById("read").onclick = function () {
 
   firebase
     .database()
-    .ref("student/" + idno)
+    .ref("student/" + ID)
     .on("value", function (snap) {
-      document.getElementById("ID").value = snap.val().ID;
+      document.getElementById("roll").value = snap.val().rollNo;
       document.getElementById("name").value = snap.val().name;
       document.getElementById("gender").value = snap.val().gender;
       document.getElementById("address").value = snap.val().address;
@@ -46,15 +46,15 @@ document.getElementById("update").onclick = function () {
 
   firebase
     .database()
-    .ref("student/" + idno)
+    .ref("student/" + ID)
     .update({
-      id: idno,
+      //   rollNo: rollV,
       name: nameV,
       gender: genderV,
       address: addressV,
     });
   alert("Data Update");
-  document.getElementById("ID").value = "";
+  document.getElementById("roll").value = "";
   document.getElementById("name").value = "";
   document.getElementById("gender").value = "";
   document.getElementById("address").value = "";
@@ -64,10 +64,10 @@ document.getElementById("delete").onclick = function () {
 
   firebase
     .database()
-    .ref("student/" + idno)
+    .ref("student/" + ID)
     .remove();
   alert("Data Deleted");
-  document.getElementById("ID").value = "";
+  document.getElementById("roll").value = "";
   document.getElementById("name").value = "";
   document.getElementById("gender").value = "";
   document.getElementById("address").value = "";
