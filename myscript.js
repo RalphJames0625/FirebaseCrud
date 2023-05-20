@@ -5,7 +5,7 @@ function readFom() {
   nameV = document.getElementById("name").value;
   genderV = document.getElementById("gender").value;
   addressV = document.getElementById("address").value;
-  console.log(rollV, nameV, addressV, genderV);
+  console.log(idno, nameV, addressV, genderV);
 }
 
 document.getElementById("insert").onclick = function () {
@@ -34,7 +34,7 @@ document.getElementById("read").onclick = function () {
     .database()
     .ref("student/" + idno)
     .on("value", function (snap) {
-      document.getElementById("ID").value = snap.val().rollNo;
+      document.getElementById("ID").value = snap.val().ID;
       document.getElementById("name").value = snap.val().name;
       document.getElementById("gender").value = snap.val().gender;
       document.getElementById("address").value = snap.val().address;
